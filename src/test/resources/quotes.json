@@ -1,0 +1,19 @@
+{
+  "timeStamp": "2018-03-01T15:47:25+01:00",
+  "country": "DE",
+  "products": {
+    "MonthProduct": {
+      "year": "2018",
+      "month": "04",
+      "baseQuote": {
+        "bidPrice": "32.70",
+        "askPrice": "32.80"
+      },
+      "peakQuote": {
+        "bidPrice": "37.90",
+        "askPrice": "38.00"
+      }
+    }
+  }
+}
+
