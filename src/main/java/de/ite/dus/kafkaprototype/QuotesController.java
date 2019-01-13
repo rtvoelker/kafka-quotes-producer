@@ -24,7 +24,7 @@ public class QuotesController {
         if(StringUtils.isEmpty(message)) {
             return BAD_REQUEST;
         }
-        sender.send("quotes", message);
+        sender.send("import-quotes-power", message);
         return OK;
     }
 }
