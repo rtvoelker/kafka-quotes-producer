@@ -2,7 +2,6 @@ package de.ite.dus.kafkaprototype;
 
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.clients.producer.RecordMetadata;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -25,10 +24,13 @@ public class Sender {
 
             final ProducerRecord<String, String> record = new ProducerRecord<>(topic, null, payload);
 
-            RecordMetadata metadata = quotesProducer.send(record).get();
-
-            LOGGER.info("sent record(key={} value={}) meta(partition={}, offset={})\n",
+            quotesProducer.send(record, (metadata, e) -> {
+                if(e != null)
+                    e.printStackTrace();
+                LOGGER.info("sent record(key={} value={}) meta(partition={}, offset={})\n",
                         record.key(), record.value(), metadata.partition(), metadata.offset());
+            });
+
         } catch(Exception e){
             LOGGER.error("error while sending record with payload "+ payload + "to topic " +topic);
         }
